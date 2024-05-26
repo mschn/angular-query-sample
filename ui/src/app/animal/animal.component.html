@@ -1,0 +1,6 @@
+@if (animal) {
+  @if (animal.isSuccess()) {
+    <h2>Animal</h2>
+    <div>{{ animal.data().id }} {{ animal.data().name }}</div>
+  }
+}

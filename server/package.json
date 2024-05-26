@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "fastify": "^4.27.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}

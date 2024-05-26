@@ -1,0 +1,11 @@
+services:
+  server:
+    build: server
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+  ui:
+    build: ui
+    ports:
+      - '80:80'

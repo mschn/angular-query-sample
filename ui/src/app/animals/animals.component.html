@@ -1,0 +1,7 @@
+@if (animals.isSuccess()) {
+  @for (animal of animals.data(); track animal.id) {
+    <div>
+      <a routerLink="/animals/{{ animal.id }}">{{ animal.name }}</a>
+    </div>
+  }
+}
