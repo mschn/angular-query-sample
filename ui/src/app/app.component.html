@@ -1,8 +1,16 @@
-<h2>Nav</h2>
-
-<div>
-  <a routerLink="/">Home</a>
-  <a routerLink="/animals">Animals</a>
+<div class="border-b-1 bg-gray-50 flex flex-row">
+  <img class="h-8 m-2 self-center" src="/angular.svg" />
+  @for (route of routes; track route.path) {
+    <a
+      class="p-3 border-b-2 border-b-transparent hover:border-b-blue-500"
+      routerLinkActive="border-b-blue-200"
+      [routerLink]="route.path"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >{{ route.label }}</a
+    >
+  }
 </div>
 
-<router-outlet></router-outlet>
+<div class="p-2">
+  <router-outlet></router-outlet>
+</div>

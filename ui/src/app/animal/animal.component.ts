@@ -1,10 +1,10 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { AnimalsService } from '../services/animals.service';
-import { CreateQueryResult } from '@tanstack/angular-query-experimental';
-import { Animal } from '../model/animals.model';
-import { filter, map, switchMap } from 'rxjs';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CreateQueryResult } from '@tanstack/angular-query-experimental';
+import { filter, map } from 'rxjs';
+import { Animal } from '../model/animals.model';
+import { AnimalsService } from '../services/animals.service';
 
 @Component({
   selector: 'app-animal',
@@ -26,12 +26,5 @@ export class AnimalComponent {
         takeUntilDestroyed(destroyRef),
       )
       .subscribe((id) => (this.animal = this.#animalsService.getAnimal(id)));
-  }
-
-  ngOnInit() {
-    const id = this.#route.snapshot.paramMap.get('id');
-    if (id) {
-      this.animal = this.#animalsService.getAnimal(id);
-    }
   }
 }

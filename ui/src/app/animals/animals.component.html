@@ -1,7 +1,15 @@
 @if (animals.isSuccess()) {
-  @for (animal of animals.data(); track animal.id) {
-    <div>
-      <a routerLink="/animals/{{ animal.id }}">{{ animal.name }}</a>
-    </div>
-  }
+  <table class="w-full">
+    <tbody>
+      @for (animal of animals.data(); track animal.id) {
+        <tr
+          class="border-b-1 hover:bg-gray-50 cursor-pointer"
+          routerLink="/animals/{{ animal.id }}"
+        >
+          <td class="p-2">{{ animal.id }}.</td>
+          <td class="p-2">{{ animal.name }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
 }
