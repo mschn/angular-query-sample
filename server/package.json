@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "npx nodemon index"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "type": "module",
   "dependencies": {
-    "fastify": "^4.27.0",
-    "ts-node": "^10.9.2"
+    "fastify": "^4.27.0"
   },
   "devDependencies": {
+    "nodemon": "^3.1.2",
     "prettier": "^3.2.5"
   }
 }
