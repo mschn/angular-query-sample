@@ -47,7 +47,6 @@ export class CreateComponent {
 
     this.createAnimal.mutate(animalRq, {
       onError: (err) => {
-        console.log(err);
         if (Array.isArray(err.error)) {
           this.error.set(err.error);
         } else if (err instanceof Error) {
