@@ -1,5 +1,13 @@
 @if (animals.isSuccess()) {
   <table class="w-full">
+    <thead>
+      <tr class="border-b-1 text-left">
+        <th class="p-2">Id</th>
+        <th class="p-2">Name</th>
+        <th class="p-2">Weight</th>
+        <th class="p-2">Type</th>
+      </tr>
+    </thead>
     <tbody>
       @for (animal of animals.data(); track animal.id) {
         <tr
@@ -8,6 +16,12 @@
         >
           <td class="p-2">{{ animal.id }}.</td>
           <td class="p-2">{{ animal.name }}</td>
+          <td class="p-2">{{ animal.weight }} kg</td>
+          <td class="p-2">
+            <span class="p-2 rounded-md {{ AnimalTypeColors[animal.type] }}">{{
+              animal.type
+            }}</span>
+          </td>
         </tr>
       }
     </tbody>

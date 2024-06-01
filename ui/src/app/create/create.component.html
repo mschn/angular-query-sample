@@ -8,11 +8,42 @@
           type="text"
           id="name"
           class="border-1 border-gray-300 p-2 rounded-md"
+          [ngClass]="{ 'border-red-500': form.get('name')?.errors }"
           formControlName="name"
         />
       </div>
+
+      <div class="flex flex-col">
+        <label for="weight">Weight</label>
+        <input
+          type="number"
+          id="weight"
+          class="border-1 border-gray-300 p-2 rounded-md"
+          formControlName="weight"
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="type">Type</label>
+        <select
+          id="type"
+          class="border-1 border-gray-300 bg-white p-2 rounded-md"
+          formControlName="type"
+        >
+          @for (animalType of AnimalTypes; track animalType) {
+            <option [value]="animalType">{{ animalType }}</option>
+          }
+        </select>
+      </div>
+
       <div class="flex flex-row">
-        <button type="submit" class="ml-auto btn-primary">Create</button>
+        <button
+          [disabled]="!this.form.valid"
+          type="submit"
+          class="ml-auto btn-primary"
+        >
+          Create
+        </button>
       </div>
     </div>
   </form>

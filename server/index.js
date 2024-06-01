@@ -1,14 +1,9 @@
 import Fastify from "fastify";
+import { animals } from "./animals.js";
+
 const fastify = Fastify({
   logger: true,
 });
-
-const animals = [
-  { id: "1", name: "Cat" },
-  { id: "2", name: "Dog" },
-  { id: "3", name: "Hamster" },
-  { id: "4", name: "Wolf" },
-];
 
 fastify.get("/animals", async function handler(request, reply) {
   return animals;
@@ -17,8 +12,12 @@ fastify.get("/animals", async function handler(request, reply) {
 fastify.post("/animals", async function handler(request, reply) {
   const { body } = request;
   const nextId = animals.length + 1;
-  console.log(body, body.name);
-  animals.push({ id: nextId, name: body.name });
+  animals.push({
+    id: nextId,
+    name: body.name,
+    weight: body.weight,
+    type: body.type,
+  });
   return animals;
 });
 
