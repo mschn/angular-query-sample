@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import { animals } from "./animals.js";
+import { Animal, animals } from "./animals.js";
 
 const fastify = Fastify({
   logger: true,
@@ -11,12 +11,16 @@ fastify.get("/animals", async function handler(request, reply) {
 
 fastify.post("/animals", async function handler(request, reply) {
   const { body } = request;
-  const nextId = animals.length + 1;
+  try {
+    Animal.parse(body);
+  } catch (error) {
+    // console.log(error);
+    reply.code(400).send(error.errors.map((e) => e.message));
+  }
+
   animals.push({
-    id: nextId,
-    name: body.name,
-    weight: body.weight,
-    type: body.type,
+    ...body,
+    id: animals.length + 1,
   });
   return animals;
 });

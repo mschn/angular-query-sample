@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import {
-  QueryClient,
   injectMutation,
   injectQuery,
   injectQueryClient,
@@ -31,7 +30,7 @@ export class AnimalsService {
     }));
 
   createAnimal = () =>
-    injectMutation(() => ({
+    injectMutation<Object, Error & { error: string[] }, CreateAnimalRq>(() => ({
       mutationFn: (request: CreateAnimalRq) =>
         lastValueFrom(this.#http.post(`${BASE_URL}/animals`, request)),
       onSuccess: () => {

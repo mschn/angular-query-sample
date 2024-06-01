@@ -8,7 +8,6 @@
           type="text"
           id="name"
           class="border-1 border-gray-300 p-2 rounded-md"
-          [ngClass]="{ 'border-red-500': form.get('name')?.errors }"
           formControlName="name"
         />
       </div>
@@ -36,14 +35,21 @@
         </select>
       </div>
 
-      <div class="flex flex-row">
-        <button
-          [disabled]="!this.form.valid"
-          type="submit"
-          class="ml-auto btn-primary"
+      @if (error().length > 0) {
+        <div
+          class="border-1 border-red-500 bg-red-100 text-red-500 p-3 rounded-md"
         >
-          Create
-        </button>
+          There was an error during the mutation:<br />
+          <ul class="list-disc">
+            @for (err of error(); track err) {
+              <li class="ml-3">{{ err }}</li>
+            }
+          </ul>
+        </div>
+      }
+
+      <div class="flex flex-row">
+        <button type="submit" class="ml-auto btn-primary">Create</button>
       </div>
     </div>
   </form>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -25,6 +25,9 @@ export class CreateComponent {
   #router = inject(Router);
   #animalService = inject(AnimalsService);
   createAnimal = this.#animalService.createAnimal();
+
+  error = signal<string[]>([]);
+
   AnimalTypes = AnimalTypes;
 
   form = new FormGroup({
@@ -34,10 +37,7 @@ export class CreateComponent {
   });
 
   onSubmit() {
-    if (!this.form.valid) {
-      return;
-    }
-
+    this.error.set([]);
     const formValue = this.form.value;
     const animalRq: CreateAnimalRq = {
       name: formValue.name ?? '',
@@ -46,6 +46,14 @@ export class CreateComponent {
     };
 
     this.createAnimal.mutate(animalRq, {
+      onError: (err) => {
+        console.log(err);
+        if (Array.isArray(err.error)) {
+          this.error.set(err.error);
+        } else if (err instanceof Error) {
+          this.error.set([err.message]);
+        }
+      },
       onSuccess: () => {
         this.#router.navigateByUrl('/animals');
       },

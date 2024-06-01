@@ -1,3 +1,11 @@
+import { z } from "zod";
+
+export const Animal = z.object({
+  name: z.string().trim().min(1, { message: "Name is required" }),
+  weight: z.number().gt(0, { message: "Weight must be positive" }),
+  type: z.enum(["Mammal", "Fish", "Bird", "Reptile", "Insect"]),
+});
+
 export const animals = [
   { id: "1", name: "Cat", weight: 3, type: "Mammal" },
   { id: "2", name: "Shark", weight: 120, type: "Fish" },
