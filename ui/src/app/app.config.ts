@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 import {
   QueryClient,
   provideAngularQuery,
+  provideQueryClient,
 } from '@tanstack/angular-query-experimental';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';

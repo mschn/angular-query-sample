@@ -14,7 +14,15 @@ fastify.get("/animals", async function handler(request, reply) {
   return animals;
 });
 
-fastify.get("/animal/:id", async function handler(request, reply) {
+fastify.post("/animals", async function handler(request, reply) {
+  const { body } = request;
+  const nextId = animals.length + 1;
+  console.log(body, body.name);
+  animals.push({ id: nextId, name: body.name });
+  return animals;
+});
+
+fastify.get("/animals/:id", async function handler(request, reply) {
   const animal = animals.find((animal) => animal.id === request.params.id);
   if (animal) {
     return animal;
@@ -25,6 +33,13 @@ fastify.get("/animal/:id", async function handler(request, reply) {
 
 fastify.addHook("preHandler", (req, res, done) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+
+  const isPreflight = /options/i.test(req.method);
+  if (isPreflight) {
+    return res.send();
+  }
   done();
 });
 
