@@ -8,7 +8,6 @@ import { AnimalTypeColors } from '../model/animals.model';
   standalone: true,
   imports: [RouterLink],
   templateUrl: './animals.component.html',
-  styleUrl: './animals.component.scss',
 })
 export class AnimalsComponent {
   animalsService = inject(AnimalsService);

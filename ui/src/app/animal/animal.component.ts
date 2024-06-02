@@ -11,7 +11,6 @@ import { AnimalsService } from '../services/animals.service';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './animal.component.html',
-  styleUrl: './animal.component.scss',
 })
 export class AnimalComponent {
   #route = inject(ActivatedRoute);
