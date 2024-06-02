@@ -36,9 +36,7 @@
       </div>
 
       @if (createAnimal.isError()) {
-        <div
-          class="border-1 border-red-500 bg-red-100 text-red-500 p-3 rounded-md"
-        >
+        <div class="error">
           There was an error during the mutation:<br />
           <ul class="list-disc">
             @for (err of createAnimal.error().error; track err) {

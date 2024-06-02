@@ -1,15 +1,23 @@
-@if (animal && animal.isSuccess()) {
-  <div class="mx-auto w-96 border-1 rounded-md p-4 mt-3 bg-gray-50 shadow-md">
-    <div class="text-2xl p-2 border-b-1">
-      {{ animal.data().id }}. {{ animal.data().name }}
+@if (animal) {
+  @if (animal.isLoading()) {
+    <div class="loading">Loading...</div>
+  } @else if (animal.isError()) {
+    <div class="error">
+      {{ animal.error().message }}
     </div>
-    <div class="columns-2 border-b-1 p-2">
-      <div>Weight</div>
-      <div>{{ animal.data().weight }} kg</div>
+  } @else if (animal.isSuccess()) {
+    <div class="mx-auto w-96 border-1 rounded-md p-4 mt-3 bg-gray-50 shadow-md">
+      <div class="text-2xl p-2 border-b-1">
+        {{ animal.data().id }}. {{ animal.data().name }}
+      </div>
+      <div class="columns-2 border-b-1 p-2">
+        <div>Weight</div>
+        <div>{{ animal.data().weight }} kg</div>
+      </div>
+      <div class="columns-2 border-b-1 p-2">
+        <div>Type</div>
+        <div>{{ animal.data().type }}</div>
+      </div>
     </div>
-    <div class="columns-2 border-b-1 p-2">
-      <div>Type</div>
-      <div>{{ animal.data().type }}</div>
-    </div>
-  </div>
+  }
 }

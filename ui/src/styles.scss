@@ -11,4 +11,8 @@
   .btn-secondary {
     @apply bg-white rounded-md text-blue-500 p-2 px-3 font-bold border-1 border-blue-500;
   }
+
+  .error {
+    @apply border-1 border-red-500 bg-red-100 text-red-500 p-3 rounded-md;
+  }
 }

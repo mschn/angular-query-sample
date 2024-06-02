@@ -1,4 +1,10 @@
-@if (animals.isSuccess()) {
+@if (animals.isLoading()) {
+  <div class="loading">Loading...</div>
+} @else if (animals.isError()) {
+  <div class="error">
+    {{ animals.error().message }}
+  </div>
+} @else if (animals.isSuccess()) {
   <table class="w-full">
     <thead>
       <tr class="border-b-1 text-left">
