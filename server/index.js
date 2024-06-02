@@ -14,7 +14,7 @@ fastify.post("/animals", async function handler(request, reply) {
   try {
     Animal.parse(body);
   } catch (error) {
-    reply.code(400).send(error.errors.map((e) => e.message));
+    return reply.code(400).send(error.errors.map((e) => e.message));
   }
 
   animals.push({

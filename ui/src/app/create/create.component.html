@@ -35,13 +35,13 @@
         </select>
       </div>
 
-      @if (error().length > 0) {
+      @if (createAnimal.isError()) {
         <div
           class="border-1 border-red-500 bg-red-100 text-red-500 p-3 rounded-md"
         >
           There was an error during the mutation:<br />
           <ul class="list-disc">
-            @for (err of error(); track err) {
+            @for (err of createAnimal.error().error; track err) {
               <li class="ml-3">{{ err }}</li>
             }
           </ul>
@@ -49,7 +49,13 @@
       }
 
       <div class="flex flex-row">
-        <button type="submit" class="ml-auto btn-primary">Create</button>
+        <button
+          type="submit"
+          [disabled]="createAnimal.isPending()"
+          class="ml-auto btn-primary"
+        >
+          Create
+        </button>
       </div>
     </div>
   </form>

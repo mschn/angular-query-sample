@@ -26,8 +26,6 @@ export class CreateComponent {
   #animalService = inject(AnimalsService);
   createAnimal = this.#animalService.createAnimal();
 
-  error = signal<string[]>([]);
-
   AnimalTypes = AnimalTypes;
 
   form = new FormGroup({
@@ -37,7 +35,6 @@ export class CreateComponent {
   });
 
   onSubmit() {
-    this.error.set([]);
     const formValue = this.form.value;
     const animalRq: CreateAnimalRq = {
       name: formValue.name ?? '',
@@ -46,13 +43,6 @@ export class CreateComponent {
     };
 
     this.createAnimal.mutate(animalRq, {
-      onError: (err) => {
-        if (Array.isArray(err.error)) {
-          this.error.set(err.error);
-        } else if (err instanceof Error) {
-          this.error.set([err.message]);
-        }
-      },
       onSuccess: () => {
         this.#router.navigateByUrl('/animals');
       },
