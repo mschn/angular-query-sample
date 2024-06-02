@@ -32,7 +32,7 @@ export class AnimalsService {
   createAnimal = () =>
     injectMutation<Object, Error & { error: string[] }, CreateAnimalRq>(() => ({
       mutationFn: (request: CreateAnimalRq) =>
-        lastValueFrom(this.#http.post(`${BASE_URL}/animals`, request)),
+        lastValueFrom(this.#http.put(`${BASE_URL}/animals`, request)),
       onSuccess: () => {
         this.#queryClient.invalidateQueries({ queryKey: ['animals'] });
       },

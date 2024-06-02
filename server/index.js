@@ -9,7 +9,7 @@ fastify.get("/animals", async function handler(request, reply) {
   return animals;
 });
 
-fastify.post("/animals", async function handler(request, reply) {
+fastify.put("/animals", async function handler(request, reply) {
   const { body } = request;
   try {
     Animal.parse(body);
