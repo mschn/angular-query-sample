@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject } from '@angular/core';
 import {
   injectMutation,
   injectQuery,
@@ -22,11 +22,11 @@ export class AnimalsService {
         lastValueFrom(this.#http.get<Animal[]>(`${BASE_URL}/animals`)),
     }));
 
-  getAnimal = (id: string) =>
+  getAnimal = (id: Signal<string>) =>
     injectQuery(() => ({
-      queryKey: ['animals', id],
+      queryKey: ['animals', id()],
       queryFn: () =>
-        lastValueFrom(this.#http.get<Animal>(`${BASE_URL}/animals/${id}`)),
+        lastValueFrom(this.#http.get<Animal>(`${BASE_URL}/animals/${id()}`)),
     }));
 
   createAnimal = () =>
